@@ -9,7 +9,7 @@ from requests.exceptions import ConnectionError, HTTPError, Timeout
 DEFAULT_FEE_FAST = 72
 DEFAULT_FEE_HOUR = 62
 DEFAULT_CACHE_TIME = 60 * 10
-URL = 'https://bitcoinfees.earn.com/api/v1/fees/recommended'
+URL = 'https://bitcoiner.live/api/fees/estimates/latest'
 
 
 def set_fee_cache_time(seconds):
@@ -29,7 +29,7 @@ def get_fee(fast=True):
     :type fast: ``bool``
     :rtype: ``int``
     """
-    return requests.get(URL).json()['fastestFee' if fast else 'hourFee']
+    return requests.get(URL).json()['estimates']['30']['sat_per_vbyte']
 
 
 def get_fee_local_cache(f):
